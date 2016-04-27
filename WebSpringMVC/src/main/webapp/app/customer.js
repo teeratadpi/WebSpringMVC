@@ -10,33 +10,45 @@ angular.module('ProjectSpringMVC', ['ngRoute'])
 }])
 .controller('MainController', ['$http','$location','$rootScope', '$scope',function($http, $location, $rootScope, $scope) {
 	$scope.text = 'boy';
-	$scope.customer = {};
+	$scope.customers = {};
 	$scope.flatTable = false;
-	
+	$scope.customer = {};
+
 	$http.get(appConfig + "/get/customer")
 		.success(function(data, status, headers, config) {
-			$scope.customer = data;
+			$scope.customers = data;
 		}).error(function(data, status, headers, config) {
 			alert("Error!");
 	});
      
-	$scope.add = function(){
-    	 $http.post(appConfig + "/add/customer/" + $scope.customer)
-    	 .success(function(data, status, headers, config) {
-    		 $scope.customer = data;
-    		 alert("Success : create new customer complete");
-    	 }).error(function(data, status, headers, config) {
-    		 alert("Error!");
-    	 });
+	$scope.addData = function(){
+		$http.post(appConfig + "/add/customer", $scope.customer)
+		.success(function(data, status, headers, config) {
+			$scope.customer = data;
+			alert("Success : create new customer complete");
+			window.location.reload();
+		}).error(function(data, status, headers, config) {
+			alert("Error!");
+		});
+	}
+	
+	$scope.confirmDelete = function(){
+		$("#myModal").modal()
+	}
+	
+	$scope.deleteData = function(){
+		alert("Delete!");
+		/*$http.post(appConfig + "/delete/customer" + $scope.customer.id)
+		.success(function(data, status, headers, config) {
+			$scope.customer = data;
+			alert("Success : delete customer complete");
+			window.location.reload();
+		}).error(function(data, status, headers, config) {
+			alert("Error!");
+		});*/
 	}
      
 	$scope.showTable = function(){
-    	 $scope.flatTable = !$scope.flatTable;
-    	 $http.get(appConfig + "/get/customer")
-    	 .success(function(data, status, headers, config) {
-    		 $scope.customer = data;
-    	 }).error(function(data, status, headers, config) {
-    		 alert("Error!");
-    	 });
+    	$scope.flatTable = !$scope.flatTable;
 	}
 }]);

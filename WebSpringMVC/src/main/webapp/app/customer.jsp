@@ -19,42 +19,45 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="col-xs-3">
+						<form ng-submit="form.$valid">
 						<div class="input-group">
 							<span class="input-group-addon" id="customerId">
 								<span class="glyphicon glyphicon-user"></span>
 							</span>
-							<input type="text" class="form-control" 
-								placeholder="Username" aria-describedby="basic-addon1">
+							<input type="text" class="form-control" name="id"
+								placeholder="Username" aria-describedby="basic-addon1"
+								ng-model="customer.id">
 						</div>
 						<br>
 						<div class="input-group">
 							<span class="input-group-addon" id="customerName">
 								<span class="glyphicon glyphicon-lock"></span>
 							</span>
-							<input type="text" class="form-control" 
+							<input type="text" class="form-control" name="Name"
 								placeholder="Name" aria-describedby="basic-addon1"
-								ng-model="customer.cusname">
+								ng-model="customer.name">
 						</div>
 						<br>
 						<div class="input-group">
 							<span class="input-group-addon" id="customerAge">
 								<span class="glyphicon glyphicon-heart-empty"></span>
 							</span>
-							<input type="text" class="form-control" 
+							<input type="text" class="form-control" name="Age"
 								placeholder="Age" aria-describedby="basic-addon1"
-								ng-model="customer.cusage">
+								ng-model="customer.age">
 						</div>
 						
 						<br>
 						<div class="col-xs-2"></div>
 						<div class="col-xs-2">
-							<button type="button" ng-click="add()" class="btn btn-success">ADD</button>
+							<button type="button" ng-click="addData()" class="btn btn-success">ADD</button>
 						</div>
 						<div class="col-xs-2"></div>
 						<div class="col-xs-2">
-							<button type="button" class="btn btn-danger">CLEAR</button>
+							<button type="button" ng-click="confirmDelete()" class="btn btn-danger">DELETE</button>
 						</div>
 						<br>
+						</form>
 					</div>
 						
 					<div class="col-xs-6">
@@ -72,14 +75,39 @@
 										<th>NAME</th>
 										<th>AGE</th>
 									</tr>
-									<tr ng-repeat="customers in customer">
+									<tr ng-repeat="customers in customers">
 										<td>{{customers.id}}</td>
 										<td>{{customers.name}}</td>
 										<td>{{customers.age}}</td>
 									</tr>
 								</table>
 						</div>
-					</div>
+						
+						<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog">
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">WARINING</h4>
+										</div>
+										<div class="modal-body">
+											<p>DO YOU WANT TO DELETE ?.</p>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-success" type="button" class="btn btn-default" ng-click="deleteData()"
+												data-dismiss="modal">Confirm</button>
+											<button class="btn btn-danger" type="button" class="btn btn-default"
+												data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							
+						</div>
 					
 					<div class="col-xs-3">
 					</div>
