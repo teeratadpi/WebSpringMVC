@@ -13,16 +13,52 @@
 </head>
 
 <body>
+<div class="row">
 	<div class="main_container">
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="col-xs-3">
+						<div class="input-group">
+							<span class="input-group-addon" id="customerId">
+								<span class="glyphicon glyphicon-user"></span>
+							</span>
+							<input type="text" class="form-control" 
+								placeholder="Username" aria-describedby="basic-addon1">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon" id="customerName">
+								<span class="glyphicon glyphicon-lock"></span>
+							</span>
+							<input type="text" class="form-control" 
+								placeholder="Name" aria-describedby="basic-addon1"
+								ng-model="customer.cusname">
+						</div>
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon" id="customerAge">
+								<span class="glyphicon glyphicon-heart-empty"></span>
+							</span>
+							<input type="text" class="form-control" 
+								placeholder="Age" aria-describedby="basic-addon1"
+								ng-model="customer.cusage">
+						</div>
+						
+						<br>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-2">
+							<button type="button" ng-click="add()" class="btn btn-success">ADD</button>
+						</div>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-2">
+							<button type="button" class="btn btn-danger">CLEAR</button>
+						</div>
+						<br>
 					</div>
 						
 					<div class="col-xs-6">
-					
-						<button type="button" ng-click="showTable()" class="btn btn-danger">Show Table</button>
+						<button type="button" ng-click="showTable()" class="btn btn-danger">Show Data</button>
 						<br>
 						<br>
 						
@@ -51,7 +87,7 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/plugin/assets/js/jquery.min.js" /></script>
 	<script src="resources/plugin/assets/js/jquery.form.min.js" /></script>
