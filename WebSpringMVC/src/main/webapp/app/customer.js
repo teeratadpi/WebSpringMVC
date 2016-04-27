@@ -13,6 +13,7 @@ angular.module('ProjectSpringMVC', ['ngRoute'])
 	$scope.customers = {};
 	$scope.flatTable = false;
 	$scope.customer = {};
+	$scope.validate = false;
 
 	$http.get(appConfig + "/get/customer")
 		.success(function(data, status, headers, config) {
@@ -22,14 +23,20 @@ angular.module('ProjectSpringMVC', ['ngRoute'])
 	});
      
 	$scope.addData = function(){
-		$http.post(appConfig + "/add/customer", $scope.customer)
-		.success(function(data, status, headers, config) {
-			$scope.customer = data;
-			alert("Success : create new customer complete");
-			window.location.reload();
-		}).error(function(data, status, headers, config) {
-			alert("Error!");
-		});
+		if (($scope.customer.id != null)&&($scope.customer.name != null)&&
+			($scope.customer.age != null)){
+			$http.post(appConfig + "/add/customer", $scope.customer)
+			.success(function(data, status, headers, config) {
+				$scope.customer = data;
+				alert("Success : create new customer complete");
+				$scope.validate = false;
+				window.location.reload();
+			}).error(function(data, status, headers, config) {
+				alert("Error!");
+			});
+		}else{
+			$scope.validate = true;
+		}
 	}
 	
 	$scope.confirmDelete = function(){

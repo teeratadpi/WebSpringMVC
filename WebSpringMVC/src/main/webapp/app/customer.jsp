@@ -46,8 +46,11 @@
 								placeholder="Age" aria-describedby="basic-addon1"
 								ng-model="customer.age">
 						</div>
-						
 						<br>
+						<div id="validateInput" class="alert alert-danger" ng-show="validate">
+							<strong>Validate!</strong> Please Input Value....
+						</div>
+						
 						<div class="col-xs-2"></div>
 						<div class="col-xs-2">
 							<button type="button" ng-click="addData()" class="btn btn-success">ADD</button>
@@ -97,9 +100,9 @@
 											<p>DO YOU WANT TO DELETE ?.</p>
 										</div>
 										<div class="modal-footer">
-											<button class="btn btn-success" type="button" class="btn btn-default" ng-click="deleteData()"
+											<button class="btn btn-success" type="button" ng-click="deleteData()"
 												data-dismiss="modal">Confirm</button>
-											<button class="btn btn-danger" type="button" class="btn btn-default"
+											<button class="btn btn-danger" type="button"
 												data-dismiss="modal">Cancel</button>
 										</div>
 									</div>
