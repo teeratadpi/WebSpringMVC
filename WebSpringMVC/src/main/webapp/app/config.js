@@ -1,0 +1,1 @@
+var appConfig = "http://localhost:8082/ServiceSpringMVC";
